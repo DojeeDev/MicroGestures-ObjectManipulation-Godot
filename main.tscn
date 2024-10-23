@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://dw7hkralqkttd"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_icg8k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0yg4q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fdm8h"]
+sky_material = SubResource("ProceduralSkyMaterial_0yg4q")
+
+[sub_resource type="Environment" id="Environment_ltvxi"]
+background_mode = 2
+sky = SubResource("Sky_fdm8h")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6kfp"]
+albedo_color = Color(0.917647, 0.192157, 0.305882, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_gm7bg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq13r"]
+roughness = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_703xq"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_icg8k")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ltvxi")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_g6kfp")
+mesh = SubResource("BoxMesh_gm7bg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.961122, 0.276124, 0, -0.276124, 0.961122, 0, 1.1891, 2.83452)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(29.685, 0, 0, 0, 29.685, 0, 0, 0, 29.685, 0, -0.857799, 0)
+material_override = SubResource("StandardMaterial3D_kq13r")
+mesh = SubResource("PlaneMesh_703xq")
